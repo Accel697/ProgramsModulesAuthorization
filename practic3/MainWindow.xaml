@@ -11,7 +11,7 @@
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="8" Background="#FF76E383" Margin="0,0,0,367" Height="70">
+        <Grid Grid.Row="0" Background="#FF76E383" Margin="0,0,0,0" Height="70">
             <Image Width="45" Height="45" HorizontalAlignment="Left" Margin="5" Source="/Resources/photo_2024-09-12_13-55-16.jpg"/>
             <Button Name="btnBack" HorizontalAlignment="Right" Content="Назад" Margin="670,15,10,15" Click="btnBack_Click"/>
         </Grid>
