@@ -51,7 +51,7 @@ namespace AutoservicesRul.Pages
         {
             click += 1;
             string login = txtbLogin.Text.Trim();
-            string password = pswbPassword.Text.Trim();
+            string password = pswbPassword.Password.Trim();
             string hashPassw = Hash.HashPassword(password);
 
             furniture_centreEntities db = Helper.GetContext();
