@@ -85,6 +85,7 @@ namespace AutoservicesRul.Pages
                     pswbPassword.Clear();
                     tblCaptcha.Text = "Text";
                     tbCaptcha.Text = "";
+                    tbCaptcha.Visibility = Visibility.Hidden;
                     tblCaptcha.Visibility= Visibility.Hidden;
                     MessageBox.Show("Вы вошли под: " + user.Login.ToString());
                     LoadPage(user);
