@@ -64,7 +64,7 @@ namespace AutoservicesRul.Pages
                     txtbLogin.Clear();
                     pswbPassword.Clear();
                     MessageBox.Show("Вы вошли под: " + user.Login.ToString());
-                    LoadPage(user);
+                    LoadPage(user, user.Employee.ToString());
                 }
                 else
                 {
@@ -88,7 +88,7 @@ namespace AutoservicesRul.Pages
                     tbCaptcha.Visibility = Visibility.Hidden;
                     tblCaptcha.Visibility= Visibility.Hidden;
                     MessageBox.Show("Вы вошли под: " + user.Login.ToString());
-                    LoadPage(user);
+                    LoadPage(user, user.Employee.ToString());
                 }
                 else
                 {
@@ -100,10 +100,18 @@ namespace AutoservicesRul.Pages
             }
         }
 
-        private void LoadPage(User user)
+        private void LoadPage(User user, string idEmployee)
         {
             click = 0;
-            NavigationService.Navigate(new practic3.Client(user));
+            switch (idEmployee)
+            {
+                case "1":
+                    NavigationService.Navigate(new Admin(user));
+                    break;
+                default:
+                    NavigationService.Navigate(new practic3.Client(user));
+                    break;
+            }
         }
     }
 }

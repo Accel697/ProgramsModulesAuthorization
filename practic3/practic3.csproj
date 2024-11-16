@@ -65,6 +65,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Admin.xaml.cs">
+      <DependentUpon>Admin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Client.cs">
       <DependentUpon>FurnModel.tt</DependentUpon>
     </Compile>
@@ -140,6 +143,10 @@
     <Compile Include="Services\CaptchaGenerator.cs" />
     <Compile Include="Services\Hash.cs" />
     <Compile Include="Services\Helper.cs" />
+    <Page Include="Admin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Auto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
