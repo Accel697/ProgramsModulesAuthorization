@@ -17,9 +17,9 @@
             <TextBlock Text="Логин:"/>
             <TextBox x:Name="txtbLogin"/>
             <TextBlock Text="Пароль:"/>
-            <PasswordBox x:Name="pswbPassword"/>
-            <TextBlock Visibility="Hidden" x:Name="txtBlockCaptcha" Text="Капча"/>
-            <TextBox Visibility="Hidden" x:Name="txtboxCaptcha"/>
+            <TextBox x:Name="pswbPassword"/>
+            <TextBlock Visibility="Hidden" x:Name="tblCaptcha" Text="Капча"/>
+            <TextBox Visibility="Hidden" x:Name="tbCaptcha"/>
             <TextBlock HorizontalAlignment="Center" Visibility="Hidden" x:Name="txtBlockTimer"/>
             <StackPanel Orientation="Horizontal" Height="80" HorizontalAlignment="Center">
                 <Button x:Name="btnEnterGuests" Margin="5,15,5,5" Content="Войти как гость" Click="btnEnterGuests_Click"/>

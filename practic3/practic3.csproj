@@ -35,9 +35,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,6 +65,81 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Client.cs">
+      <DependentUpon>FurnModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Employee.cs">
+      <DependentUpon>FurnModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Equipment.cs">
+      <DependentUpon>FurnModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Furniture.cs">
+      <DependentUpon>FurnModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Furniture_materials.cs">
+      <DependentUpon>FurnModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FurnModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FurnModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FurnModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FurnModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FurnModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FurnModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Job_title.cs">
+      <DependentUpon>FurnModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Material.cs">
+      <DependentUpon>FurnModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>FurnModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Repair_request.cs">
+      <DependentUpon>FurnModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Service.cs">
+      <DependentUpon>FurnModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Services_in_order.cs">
+      <DependentUpon>FurnModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Status_of_order.cs">
+      <DependentUpon>FurnModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Status_of_request.cs">
+      <DependentUpon>FurnModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Supplier.cs">
+      <DependentUpon>FurnModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Supply.cs">
+      <DependentUpon>FurnModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>FurnModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Type_of_furniture.cs">
+      <DependentUpon>FurnModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>FurnModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Workers_on_order.cs">
+      <DependentUpon>FurnModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\CaptchaGenerator.cs" />
+    <Compile Include="Services\Hash.cs" />
+    <Compile Include="Services\Helper.cs" />
     <Page Include="Auto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -102,6 +186,14 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Models\FurnModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FurnModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\FurnModel.edmx.diagram">
+      <DependentUpon>FurnModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -115,6 +207,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\folder_file_9761.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\FurnModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FurnModel.Context.cs</LastGenOutput>
+      <DependentUpon>FurnModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\FurnModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FurnModel.edmx</DependentUpon>
+      <LastGenOutput>FurnModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

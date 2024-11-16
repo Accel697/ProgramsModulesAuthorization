@@ -1,0 +1,1246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="First name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Last name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Midle name" Type="varchar" MaxLength="20" />
+          <Property Name="E-mail" Type="varchar(max)" Nullable="false" />
+          <Property Name="Phone number" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="First name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Last name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Midle name" Type="varchar" MaxLength="20" />
+          <Property Name="Born date" Type="date" Nullable="false" />
+          <Property Name="Position at work" Type="bigint" Nullable="false" />
+          <Property Name="Wages" Type="money" Nullable="false" />
+          <Property Name="Passport serial" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="Passport number" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="Registration" Type="varchar(max)" Nullable="false" />
+          <Property Name="E-mail" Type="varchar(max)" />
+          <Property Name="Phone number" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Responsible employee" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Furniture">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Type" Type="bigint" Nullable="false" />
+          <Property Name="Designer" Type="bigint" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Furniture materials">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Furniture" Type="bigint" Nullable="false" />
+          <Property Name="Material" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Job title">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Volume in stock" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer" Type="bigint" Nullable="false" />
+          <Property Name="Product" Type="bigint" Nullable="false" />
+          <Property Name="Services" Type="bigint" Nullable="false" />
+          <Property Name="Estimate" Type="money" Nullable="false" />
+          <Property Name="Estimate paid" Type="bit" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="Status" Type="bigint" Nullable="false" />
+          <Property Name="Date of completion" Type="date" />
+        </EntityType>
+        <EntityType Name="Repair request">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Equipment" Type="bigint" Nullable="false" />
+          <Property Name="Breaking" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Status" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Services in order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Order" Type="bigint" Nullable="false" />
+          <Property Name="Service" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status of order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status of request">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Adress" Type="varchar(max)" Nullable="false" />
+          <Property Name="Phone number" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Supply">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Material" Type="bigint" Nullable="false" />
+          <Property Name="Supplier" Type="bigint" Nullable="false" />
+          <Property Name="Volume" Type="float" Nullable="false" />
+          <Property Name="Delivery date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Type of furniture">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Employee" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Workers on order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Order" Type="bigint" Nullable="false" />
+          <Property Name="Employee" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Employee_Job title">
+          <End Role="Job title" Type="Self.Job title" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job title">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Position at work" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equipment_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="Responsible employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Furniture materials_Furniture">
+          <End Role="Furniture" Type="Self.Furniture" Multiplicity="1" />
+          <End Role="Furniture materials" Type="Self.Furniture materials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Furniture">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Furniture materials">
+              <PropertyRef Name="Furniture" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Furniture materials_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="Furniture materials" Type="Self.Furniture materials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Furniture materials">
+              <PropertyRef Name="Material" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Furniture_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Furniture" Type="Self.Furniture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Furniture">
+              <PropertyRef Name="Designer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Furniture_Type of furniture">
+          <End Role="Type of furniture" Type="Self.Type of furniture" Multiplicity="1" />
+          <End Role="Furniture" Type="Self.Furniture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type of furniture">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Furniture">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Furniture">
+          <End Role="Furniture" Type="Self.Furniture" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Furniture">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Status of order">
+          <End Role="Status of order" Type="Self.Status of order" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status of order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Repair request_Equipment">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="Repair request" Type="Self.Repair request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Repair request">
+              <PropertyRef Name="Equipment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Repair request_Status of request">
+          <End Role="Status of request" Type="Self.Status of request" Multiplicity="1" />
+          <End Role="Repair request" Type="Self.Repair request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status of request">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Repair request">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Services in order_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Services in order" Type="Self.Services in order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Services in order">
+              <PropertyRef Name="Order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Services in order_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Services in order" Type="Self.Services in order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Services in order">
+              <PropertyRef Name="Service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supply_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="Supply" Type="Self.Supply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Supply">
+              <PropertyRef Name="Material" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supply_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="Supply" Type="Self.Supply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Supply">
+              <PropertyRef Name="Supplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Workers on order_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Workers on order" Type="Self.Workers on order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Workers on order">
+              <PropertyRef Name="Employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Workers on order_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Workers on order" Type="Self.Workers on order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Workers on order">
+              <PropertyRef Name="Order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ModelContainer">
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Furniture" EntityType="Self.Furniture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Furniture materials" EntityType="Self.Furniture materials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Job title" EntityType="Self.Job title" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Repair request" EntityType="Self.Repair request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Services in order" EntityType="Self.Services in order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status of order" EntityType="Self.Status of order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status of request" EntityType="Self.Status of request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supply" EntityType="Self.Supply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type of furniture" EntityType="Self.Type of furniture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Workers on order" EntityType="Self.Workers on order" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Employee_Job title" Association="Self.FK_Employee_Job title">
+            <End Role="Job title" EntitySet="Job title" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipment_Employee" Association="Self.FK_Equipment_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Furniture materials_Furniture" Association="Self.FK_Furniture materials_Furniture">
+            <End Role="Furniture" EntitySet="Furniture" />
+            <End Role="Furniture materials" EntitySet="Furniture materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Furniture materials_Material" Association="Self.FK_Furniture materials_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="Furniture materials" EntitySet="Furniture materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Furniture_Employee" Association="Self.FK_Furniture_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Furniture" EntitySet="Furniture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Furniture_Type of furniture" Association="Self.FK_Furniture_Type of furniture">
+            <End Role="Type of furniture" EntitySet="Type of furniture" />
+            <End Role="Furniture" EntitySet="Furniture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Client" Association="Self.FK_Order_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Furniture" Association="Self.FK_Order_Furniture">
+            <End Role="Furniture" EntitySet="Furniture" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Status of order" Association="Self.FK_Order_Status of order">
+            <End Role="Status of order" EntitySet="Status of order" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repair request_Equipment" Association="Self.FK_Repair request_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="Repair request" EntitySet="Repair request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repair request_Status of request" Association="Self.FK_Repair request_Status of request">
+            <End Role="Status of request" EntitySet="Status of request" />
+            <End Role="Repair request" EntitySet="Repair request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Services in order_Order" Association="Self.FK_Services in order_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Services in order" EntitySet="Services in order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Services in order_Service" Association="Self.FK_Services in order_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Services in order" EntitySet="Services in order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supply_Material" Association="Self.FK_Supply_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="Supply" EntitySet="Supply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supply_Supplier" Association="Self.FK_Supply_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Supply" EntitySet="Supply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Employee" Association="Self.FK_User_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Workers on order_Employee" Association="Self.FK_Workers on order_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Workers on order" EntitySet="Workers on order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Workers on order_Order" Association="Self.FK_Workers on order_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Workers on order" EntitySet="Workers on order" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="First_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Last_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Midle_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="E_mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone_number" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Client" FromRole="Client" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="First_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Last_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Midle_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Born_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Position_at_work" Type="Int64" Nullable="false" />
+          <Property Name="Wages" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Passport_serial" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+          <Property Name="Passport_number" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="Registration" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="E_mail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Phone_number" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Job_title" Relationship="Self.FK_Employee_Job_title" FromRole="Employee" ToRole="Job_title" />
+          <NavigationProperty Name="Equipment" Relationship="Self.FK_Equipment_Employee" FromRole="Employee" ToRole="Equipment" />
+          <NavigationProperty Name="Furniture" Relationship="Self.FK_Furniture_Employee" FromRole="Employee" ToRole="Furniture" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Employee" FromRole="Employee" ToRole="User" />
+          <NavigationProperty Name="Workers_on_order" Relationship="Self.FK_Workers_on_order_Employee" FromRole="Employee" ToRole="Workers_on_order" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Responsible_employee" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Equipment_Employee" FromRole="Equipment" ToRole="Employee" />
+          <NavigationProperty Name="Repair_request" Relationship="Self.FK_Repair_request_Equipment" FromRole="Equipment" ToRole="Repair_request" />
+        </EntityType>
+        <EntityType Name="Furniture">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Type" Type="Int64" Nullable="false" />
+          <Property Name="Designer" Type="Int64" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Furniture_Employee" FromRole="Furniture" ToRole="Employee" />
+          <NavigationProperty Name="Furniture_materials" Relationship="Self.FK_Furniture_materials_Furniture" FromRole="Furniture" ToRole="Furniture_materials" />
+          <NavigationProperty Name="Type_of_furniture" Relationship="Self.FK_Furniture_Type_of_furniture" FromRole="Furniture" ToRole="Type_of_furniture" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Furniture" FromRole="Furniture" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Furniture_materials">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Furniture" Type="Int64" Nullable="false" />
+          <Property Name="Material" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Furniture1" Relationship="Self.FK_Furniture_materials_Furniture" FromRole="Furniture_materials" ToRole="Furniture" />
+          <NavigationProperty Name="Material1" Relationship="Self.FK_Furniture_materials_Material" FromRole="Furniture_materials" ToRole="Material" />
+        </EntityType>
+        <EntityType Name="Job_title">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Job_title" FromRole="Job_title" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Volume_in_stock" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Furniture_materials" Relationship="Self.FK_Furniture_materials_Material" FromRole="Material" ToRole="Furniture_materials" />
+          <NavigationProperty Name="Supply" Relationship="Self.FK_Supply_Material" FromRole="Material" ToRole="Supply" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer" Type="Int64" Nullable="false" />
+          <Property Name="Product" Type="Int64" Nullable="false" />
+          <Property Name="Services" Type="Int64" Nullable="false" />
+          <Property Name="Estimate" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Estimate_paid" Type="Boolean" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Status" Type="Int64" Nullable="false" />
+          <Property Name="Date_of_completion" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Order_Client" FromRole="Order" ToRole="Client" />
+          <NavigationProperty Name="Furniture" Relationship="Self.FK_Order_Furniture" FromRole="Order" ToRole="Furniture" />
+          <NavigationProperty Name="Status_of_order" Relationship="Self.FK_Order_Status_of_order" FromRole="Order" ToRole="Status_of_order" />
+          <NavigationProperty Name="Services_in_order" Relationship="Self.FK_Services_in_order_Order" FromRole="Order" ToRole="Services_in_order" />
+          <NavigationProperty Name="Workers_on_order" Relationship="Self.FK_Workers_on_order_Order" FromRole="Order" ToRole="Workers_on_order" />
+        </EntityType>
+        <EntityType Name="Repair_request">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Equipment" Type="Int64" Nullable="false" />
+          <Property Name="Breaking" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Equipment1" Relationship="Self.FK_Repair_request_Equipment" FromRole="Repair_request" ToRole="Equipment" />
+          <NavigationProperty Name="Status_of_request" Relationship="Self.FK_Repair_request_Status_of_request" FromRole="Repair_request" ToRole="Status_of_request" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Services_in_order" Relationship="Self.FK_Services_in_order_Service" FromRole="Service" ToRole="Services_in_order" />
+        </EntityType>
+        <EntityType Name="Services_in_order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Order" Type="Int64" Nullable="false" />
+          <Property Name="Service" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Order1" Relationship="Self.FK_Services_in_order_Order" FromRole="Services_in_order" ToRole="Order" />
+          <NavigationProperty Name="Service1" Relationship="Self.FK_Services_in_order_Service" FromRole="Services_in_order" ToRole="Service" />
+        </EntityType>
+        <EntityType Name="Status_of_order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Status_of_order" FromRole="Status_of_order" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Status_of_request">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Repair_request" Relationship="Self.FK_Repair_request_Status_of_request" FromRole="Status_of_request" ToRole="Repair_request" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Adress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone_number" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Supply" Relationship="Self.FK_Supply_Supplier" FromRole="Supplier" ToRole="Supply" />
+        </EntityType>
+        <EntityType Name="Supply">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Material" Type="Int64" Nullable="false" />
+          <Property Name="Supplier" Type="Int64" Nullable="false" />
+          <Property Name="Volume" Type="Double" Nullable="false" />
+          <Property Name="Delivery_date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Material1" Relationship="Self.FK_Supply_Material" FromRole="Supply" ToRole="Material" />
+          <NavigationProperty Name="Supplier1" Relationship="Self.FK_Supply_Supplier" FromRole="Supply" ToRole="Supplier" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Type_of_furniture">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Furniture" Relationship="Self.FK_Furniture_Type_of_furniture" FromRole="Type_of_furniture" ToRole="Furniture" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Employee" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK_User_Employee" FromRole="User" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Workers_on_order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Order" Type="Int64" Nullable="false" />
+          <Property Name="Employee" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK_Workers_on_order_Employee" FromRole="Workers_on_order" ToRole="Employee" />
+          <NavigationProperty Name="Order1" Relationship="Self.FK_Workers_on_order_Order" FromRole="Workers_on_order" ToRole="Order" />
+        </EntityType>
+        <Association Name="FK_Order_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Customer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Job_title">
+          <End Role="Job_title" Type="Self.Job_title" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job_title">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Position_at_work" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equipment_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="Responsible_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Furniture_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Furniture" Type="Self.Furniture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Furniture">
+              <PropertyRef Name="Designer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Workers_on_order_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Workers_on_order" Type="Self.Workers_on_order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Workers_on_order">
+              <PropertyRef Name="Employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Repair_request_Equipment">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="Repair_request" Type="Self.Repair_request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Repair_request">
+              <PropertyRef Name="Equipment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Furniture_materials_Furniture">
+          <End Role="Furniture" Type="Self.Furniture" Multiplicity="1" />
+          <End Role="Furniture_materials" Type="Self.Furniture_materials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Furniture">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Furniture_materials">
+              <PropertyRef Name="Furniture" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Furniture_Type_of_furniture">
+          <End Role="Type_of_furniture" Type="Self.Type_of_furniture" Multiplicity="1" />
+          <End Role="Furniture" Type="Self.Furniture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_of_furniture">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Furniture">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Furniture">
+          <End Role="Furniture" Type="Self.Furniture" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Furniture">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Furniture_materials_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="Furniture_materials" Type="Self.Furniture_materials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Furniture_materials">
+              <PropertyRef Name="Material" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supply_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="Supply" Type="Self.Supply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Supply">
+              <PropertyRef Name="Material" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Status_of_order">
+          <End Role="Status_of_order" Type="Self.Status_of_order" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status_of_order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Services_in_order_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Services_in_order" Type="Self.Services_in_order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Services_in_order">
+              <PropertyRef Name="Order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Workers_on_order_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Workers_on_order" Type="Self.Workers_on_order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Workers_on_order">
+              <PropertyRef Name="Order" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Repair_request_Status_of_request">
+          <End Role="Status_of_request" Type="Self.Status_of_request" Multiplicity="1" />
+          <End Role="Repair_request" Type="Self.Repair_request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status_of_request">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Repair_request">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Services_in_order_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Services_in_order" Type="Self.Services_in_order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Services_in_order">
+              <PropertyRef Name="Service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Supply_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+          <End Role="Supply" Type="Self.Supply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Supply">
+              <PropertyRef Name="Supplier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="furniture_centreEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" />
+          <EntitySet Name="Furniture" EntityType="Self.Furniture" />
+          <EntitySet Name="Furniture_materials" EntityType="Self.Furniture_materials" />
+          <EntitySet Name="Job_title" EntityType="Self.Job_title" />
+          <EntitySet Name="Material" EntityType="Self.Material" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="Repair_request" EntityType="Self.Repair_request" />
+          <EntitySet Name="Service" EntityType="Self.Service" />
+          <EntitySet Name="Services_in_order" EntityType="Self.Services_in_order" />
+          <EntitySet Name="Status_of_order" EntityType="Self.Status_of_order" />
+          <EntitySet Name="Status_of_request" EntityType="Self.Status_of_request" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" />
+          <EntitySet Name="Supply" EntityType="Self.Supply" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Type_of_furniture" EntityType="Self.Type_of_furniture" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="Workers_on_order" EntityType="Self.Workers_on_order" />
+          <AssociationSet Name="FK_Order_Client" Association="Self.FK_Order_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Job_title" Association="Self.FK_Employee_Job_title">
+            <End Role="Job_title" EntitySet="Job_title" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipment_Employee" Association="Self.FK_Equipment_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Furniture_Employee" Association="Self.FK_Furniture_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Furniture" EntitySet="Furniture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Employee" Association="Self.FK_User_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Workers_on_order_Employee" Association="Self.FK_Workers_on_order_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Workers_on_order" EntitySet="Workers_on_order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repair_request_Equipment" Association="Self.FK_Repair_request_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="Repair_request" EntitySet="Repair_request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Furniture_materials_Furniture" Association="Self.FK_Furniture_materials_Furniture">
+            <End Role="Furniture" EntitySet="Furniture" />
+            <End Role="Furniture_materials" EntitySet="Furniture_materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Furniture_Type_of_furniture" Association="Self.FK_Furniture_Type_of_furniture">
+            <End Role="Type_of_furniture" EntitySet="Type_of_furniture" />
+            <End Role="Furniture" EntitySet="Furniture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Furniture" Association="Self.FK_Order_Furniture">
+            <End Role="Furniture" EntitySet="Furniture" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Furniture_materials_Material" Association="Self.FK_Furniture_materials_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="Furniture_materials" EntitySet="Furniture_materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supply_Material" Association="Self.FK_Supply_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="Supply" EntitySet="Supply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Status_of_order" Association="Self.FK_Order_Status_of_order">
+            <End Role="Status_of_order" EntitySet="Status_of_order" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Services_in_order_Order" Association="Self.FK_Services_in_order_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Services_in_order" EntitySet="Services_in_order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Workers_on_order_Order" Association="Self.FK_Workers_on_order_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Workers_on_order" EntitySet="Workers_on_order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repair_request_Status_of_request" Association="Self.FK_Repair_request_Status_of_request">
+            <End Role="Status_of_request" EntitySet="Status_of_request" />
+            <End Role="Repair_request" EntitySet="Repair_request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Services_in_order_Service" Association="Self.FK_Services_in_order_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Services_in_order" EntitySet="Services_in_order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Supply_Supplier" Association="Self.FK_Supply_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Supply" EntitySet="Supply" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="furniture_centreEntities">
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="Model.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="First_name" ColumnName="First name" />
+                <ScalarProperty Name="Last_name" ColumnName="Last name" />
+                <ScalarProperty Name="Midle_name" ColumnName="Midle name" />
+                <ScalarProperty Name="E_mail" ColumnName="E-mail" />
+                <ScalarProperty Name="Phone_number" ColumnName="Phone number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="Model.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="First_name" ColumnName="First name" />
+                <ScalarProperty Name="Last_name" ColumnName="Last name" />
+                <ScalarProperty Name="Midle_name" ColumnName="Midle name" />
+                <ScalarProperty Name="Born_date" ColumnName="Born date" />
+                <ScalarProperty Name="Position_at_work" ColumnName="Position at work" />
+                <ScalarProperty Name="Wages" ColumnName="Wages" />
+                <ScalarProperty Name="Passport_serial" ColumnName="Passport serial" />
+                <ScalarProperty Name="Passport_number" ColumnName="Passport number" />
+                <ScalarProperty Name="Registration" ColumnName="Registration" />
+                <ScalarProperty Name="E_mail" ColumnName="E-mail" />
+                <ScalarProperty Name="Phone_number" ColumnName="Phone number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipment">
+            <EntityTypeMapping TypeName="Model.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Responsible_employee" ColumnName="Responsible employee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Furniture">
+            <EntityTypeMapping TypeName="Model.Furniture">
+              <MappingFragment StoreEntitySet="Furniture">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Designer" ColumnName="Designer" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Furniture_materials">
+            <EntityTypeMapping TypeName="Model.Furniture_materials">
+              <MappingFragment StoreEntitySet="Furniture materials">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Furniture" ColumnName="Furniture" />
+                <ScalarProperty Name="Material" ColumnName="Material" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Job_title">
+            <EntityTypeMapping TypeName="Model.Job_title">
+              <MappingFragment StoreEntitySet="Job title">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Material">
+            <EntityTypeMapping TypeName="Model.Material">
+              <MappingFragment StoreEntitySet="Material">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Volume_in_stock" ColumnName="Volume in stock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="Model.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Customer" ColumnName="Customer" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="Services" ColumnName="Services" />
+                <ScalarProperty Name="Estimate" ColumnName="Estimate" />
+                <ScalarProperty Name="Estimate_paid" ColumnName="Estimate paid" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Date_of_completion" ColumnName="Date of completion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Repair_request">
+            <EntityTypeMapping TypeName="Model.Repair_request">
+              <MappingFragment StoreEntitySet="Repair request">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Equipment" ColumnName="Equipment" />
+                <ScalarProperty Name="Breaking" ColumnName="Breaking" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Service">
+            <EntityTypeMapping TypeName="Model.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services_in_order">
+            <EntityTypeMapping TypeName="Model.Services_in_order">
+              <MappingFragment StoreEntitySet="Services in order">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Service" ColumnName="Service" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status_of_order">
+            <EntityTypeMapping TypeName="Model.Status_of_order">
+              <MappingFragment StoreEntitySet="Status of order">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status_of_request">
+            <EntityTypeMapping TypeName="Model.Status_of_request">
+              <MappingFragment StoreEntitySet="Status of request">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supplier">
+            <EntityTypeMapping TypeName="Model.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="Phone_number" ColumnName="Phone number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supply">
+            <EntityTypeMapping TypeName="Model.Supply">
+              <MappingFragment StoreEntitySet="Supply">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Material" ColumnName="Material" />
+                <ScalarProperty Name="Supplier" ColumnName="Supplier" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="Delivery_date" ColumnName="Delivery date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type_of_furniture">
+            <EntityTypeMapping TypeName="Model.Type_of_furniture">
+              <MappingFragment StoreEntitySet="Type of furniture">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="Model.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Employee" ColumnName="Employee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Workers_on_order">
+            <EntityTypeMapping TypeName="Model.Workers_on_order">
+              <MappingFragment StoreEntitySet="Workers on order">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Employee" ColumnName="Employee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

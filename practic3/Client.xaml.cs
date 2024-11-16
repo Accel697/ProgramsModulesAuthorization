@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using practic3.Models;
+using practic3.Services;
 
 namespace practic3
 {
@@ -20,7 +22,7 @@ namespace practic3
     /// </summary>
     public partial class Client : Page
     {
-        public Client(object value)
+        public Client(User user)
         {
             InitializeComponent();
         }
