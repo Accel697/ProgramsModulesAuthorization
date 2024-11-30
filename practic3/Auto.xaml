@@ -15,15 +15,15 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="Логин:"/>
-            <TextBox x:Name="txtbLogin"/>
+            <TextBox x:Name="txtbLogin" IsEnabled="True"/>
             <TextBlock Text="Пароль:"/>
-            <PasswordBox x:Name="pswbPassword"/>
+            <PasswordBox x:Name="pswbPassword" IsEnabled="True"/>
             <TextBlock Visibility="Hidden" x:Name="tblCaptcha" Text="Капча"/>
-            <TextBox Visibility="Hidden" x:Name="tbCaptcha"/>
-            <TextBlock HorizontalAlignment="Center" Visibility="Hidden" x:Name="txtBlockTimer"/>
+            <TextBox Visibility="Hidden" x:Name="tbCaptcha" IsEnabled="True"/>
+            <TextBlock HorizontalAlignment="Center" Visibility="Hidden" x:Name="txtbTimer" Text="" Foreground="#FFDF0707"/>
             <StackPanel Orientation="Horizontal" Height="80" HorizontalAlignment="Center">
-                <Button x:Name="btnEnterGuests" Margin="5,15,5,5" Content="Войти как гость" Click="btnEnterGuests_Click"/>
-                <Button x:Name="btnEnter" Margin="5,15,5,5" Content="Войти" Click="btnEnter_Click"/>
+                <Button x:Name="btnEnterGuests" Margin="5,15,5,5" Content="Войти как гость" Click="btnEnterGuests_Click" IsEnabled="True"/>
+                <Button x:Name="btnEnter" Margin="5,15,5,5" Content="Войти" Click="btnEnter_Click" IsEnabled="True"/>
             </StackPanel>
         </StackPanel>
     </Grid>
