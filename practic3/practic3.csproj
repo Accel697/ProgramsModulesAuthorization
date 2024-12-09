@@ -98,6 +98,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FurnModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Gender.cs">
+      <DependentUpon>FurnModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Job_title.cs">
       <DependentUpon>FurnModel.tt</DependentUpon>
     </Compile>

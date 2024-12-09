@@ -35,6 +35,7 @@ namespace practic3.Models
         public string Registration { get; set; }
         public string E_mail { get; set; }
         public string Phone_number { get; set; }
+        public long Gender { get; set; }
     
         public virtual Job_title Job_title { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -45,5 +46,6 @@ namespace practic3.Models
         public virtual ICollection<User> User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Workers_on_order> Workers_on_order { get; set; }
+        public virtual Gender Gender1 { get; set; }
     }
 }

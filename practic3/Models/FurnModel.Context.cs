@@ -44,5 +44,6 @@ namespace practic3.Models
         public virtual DbSet<Type_of_furniture> Type_of_furniture { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Workers_on_order> Workers_on_order { get; set; }
+        public virtual DbSet<Gender> Gender { get; set; }
     }
 }

@@ -42,6 +42,8 @@
         <AssociationConnector Association="Model.FK_Repair_request_Status_of_request" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Services_in_order_Service" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Supply_Supplier" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.Gender" Width="1.5" PointX="0.75" PointY="4.5" />
+        <AssociationConnector Association="Model.FK_Employee_Gender" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

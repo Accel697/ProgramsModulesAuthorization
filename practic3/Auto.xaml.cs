@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,11 +70,23 @@ namespace AutoservicesRul.Pages
             var user = db.User.Where(x => x.Login == login && x.Password == hashPassw).FirstOrDefault();
             if (click == 1)
             {
+                if (!IsAccessAllowed())
+                {
+                    MessageBox.Show("Доступ к системе в данный момент запрещён. Пожалуйста, приходите в рабочие часы с 9:00 до 19:00.",
+                        "Ошибка доступа", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                    BlockControls();
+                    remainingTime = 30;
+                    txtbTimer.Visibility = Visibility.Visible;
+                    timer.Start();
+                    return;
+                }
+
                 if (user != null)
                 {
                     txtbLogin.Clear();
                     pswbPassword.Clear();
-                    MessageBox.Show("Вы вошли под: " + user.Login.ToString());
+                    MessageBox.Show(GreetUser(user));
                     LoadPage(user, user.Employee.ToString());
                 }
                 else
@@ -95,8 +108,6 @@ namespace AutoservicesRul.Pages
 
                     remainingTime = 10;
                     txtbTimer.Visibility = Visibility.Visible;
-                    txtbTimer.Text = $"Оставшееся время: {remainingTime} секунд";
-
                     timer.Start();
                 }
 
@@ -108,7 +119,7 @@ namespace AutoservicesRul.Pages
                     tbCaptcha.Text = "";
                     tbCaptcha.Visibility = Visibility.Hidden;
                     tblCaptcha.Visibility= Visibility.Hidden;
-                    MessageBox.Show("Вы вошли под: " + user.Login.ToString());
+                    MessageBox.Show(GreetUser(user));
                     LoadPage(user, user.Employee.ToString());
                 }
                 else
@@ -173,6 +184,42 @@ namespace AutoservicesRul.Pages
             }
 
             txtbTimer.Text = $"Оставшееся время: {remainingTime} секунд";
+        }
+
+        private bool IsAccessAllowed()
+        {
+            DateTime now = DateTime.Now;
+            TimeSpan startTime = new TimeSpan(9, 0, 0);  // 9:00
+            TimeSpan endTime = new TimeSpan(19, 0, 0);    // 19:00
+            TimeSpan currentTime = now.TimeOfDay;
+
+            return currentTime >= startTime && currentTime <= endTime;
+        }
+
+        private string GreetUser(User user)
+        {
+            DateTime now = DateTime.Now;
+            string timeOfDay = null;
+            string lastName = user.Employee1.Last_name.ToString();
+            string firstName = user.Employee1.First_name.ToString();
+            string middleName = user.Employee1.Midle_name.ToString();
+
+            if (now.Hour >= 9 && now.Hour < 12)
+            {
+                timeOfDay = "Доброе Утро!";
+            }
+            else if (now.Hour >= 12 && now.Hour < 17)
+            {
+                timeOfDay = "Добрый День!";
+            }
+            else if (now.Hour >= 17 && now.Hour < 19)
+            {
+                timeOfDay = "Добрый Вечер!";
+            }
+
+            string fullName = $"{lastName} {firstName}" + (string.IsNullOrEmpty(middleName) ? "" : $" {middleName}");
+
+            return $"{timeOfDay}\nДобро пожаловать {fullName}";
         }
     }
 }

@@ -25,6 +25,7 @@
           <Property Name="Last name" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Midle name" Type="varchar" MaxLength="20" />
           <Property Name="Born date" Type="date" Nullable="false" />
+          <Property Name="Gender" Type="bigint" Nullable="false" />
           <Property Name="Position at work" Type="bigint" Nullable="false" />
           <Property Name="Wages" Type="money" Nullable="false" />
           <Property Name="Passport serial" Type="numeric" Precision="4" Scale="0" Nullable="false" />
@@ -59,6 +60,13 @@
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Furniture" Type="bigint" Nullable="false" />
           <Property Name="Material" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="Job title">
           <Key>
@@ -182,6 +190,18 @@
           <Property Name="Order" Type="bigint" Nullable="false" />
           <Property Name="Employee" Type="bigint" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Employee_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Employee_Job title">
           <End Role="Job title" Type="Self.Job title" Multiplicity="1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
@@ -404,6 +424,7 @@
           <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Furniture" EntityType="Self.Furniture" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Furniture materials" EntityType="Self.Furniture materials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Job title" EntityType="Self.Job title" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
@@ -418,6 +439,10 @@
           <EntitySet Name="Type of furniture" EntityType="Self.Type of furniture" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Workers on order" EntityType="Self.Workers on order" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Employee_Gender" Association="Self.FK_Employee_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
           <AssociationSet Name="FK_Employee_Job title" Association="Self.FK_Employee_Job title">
             <End Role="Job title" EntitySet="Job title" />
             <End Role="Employee" EntitySet="Employee" />
@@ -528,6 +553,8 @@
           <NavigationProperty Name="Furniture" Relationship="Self.FK_Furniture_Employee" FromRole="Employee" ToRole="Furniture" />
           <NavigationProperty Name="User" Relationship="Self.FK_User_Employee" FromRole="Employee" ToRole="User" />
           <NavigationProperty Name="Workers_on_order" Relationship="Self.FK_Workers_on_order_Employee" FromRole="Employee" ToRole="Workers_on_order" />
+          <Property Name="Gender" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Gender1" Relationship="Model.FK_Employee_Gender" FromRole="Employee" ToRole="Gender" />
         </EntityType>
         <EntityType Name="Equipment">
           <Key>
@@ -1016,7 +1043,32 @@
             <End Role="Supplier" EntitySet="Supplier" />
             <End Role="Supply" EntitySet="Supply" />
           </AssociationSet>
+          <EntitySet Name="Gender" EntityType="Model.Gender" />
+          <AssociationSet Name="FK_Employee_Gender" Association="Model.FK_Employee_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="Model.FK_Employee_Gender" FromRole="Gender" ToRole="Employee" />
+        </EntityType>
+        <Association Name="FK_Employee_Gender">
+          <End Type="Model.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="Model.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1038,6 +1090,7 @@
           <EntitySetMapping Name="Employee">
             <EntityTypeMapping TypeName="Model.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="First_name" ColumnName="First name" />
                 <ScalarProperty Name="Last_name" ColumnName="Last name" />
@@ -1216,6 +1269,14 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="Employee" ColumnName="Employee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="Model.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
