@@ -72,7 +72,7 @@ namespace AutoservicesRul.Pages
             {
                 if (!IsAccessAllowed())
                 {
-                    MessageBox.Show("Доступ к системе в данный момент запрещён. Пожалуйста, приходите в рабочие часы с 9:00 до 19:00.",
+                    MessageBox.Show("Доступ к системе в данный момент запрещён. Пожалуйста, приходите в рабочие часы с 9:00 до 18:00.",
                         "Ошибка доступа", MessageBoxButton.OK, MessageBoxImage.Warning);
 
                     BlockControls();
@@ -190,7 +190,7 @@ namespace AutoservicesRul.Pages
         {
             DateTime now = DateTime.Now;
             TimeSpan startTime = new TimeSpan(9, 0, 0);  // 9:00
-            TimeSpan endTime = new TimeSpan(19, 0, 0);    // 19:00
+            TimeSpan endTime = new TimeSpan(18, 0, 0);    // 18:00
             TimeSpan currentTime = now.TimeOfDay;
 
             return currentTime >= startTime && currentTime <= endTime;
@@ -208,11 +208,11 @@ namespace AutoservicesRul.Pages
             {
                 timeOfDay = "Доброе Утро!";
             }
-            else if (now.Hour >= 12 && now.Hour < 17)
+            else if (now.Hour >= 12 && now.Hour < 16)
             {
                 timeOfDay = "Добрый День!";
             }
-            else if (now.Hour >= 17 && now.Hour < 19)
+            else if (now.Hour >= 16 && now.Hour < 18)
             {
                 timeOfDay = "Добрый Вечер!";
             }
