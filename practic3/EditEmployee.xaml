@@ -1,0 +1,68 @@
+﻿<Page x:Class="practic3.EditEmployee"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:practic3"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EditEmployee">
+
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="20">
+            <TextBlock Text="Редактирование пользователя" FontWeight="Bold" FontSize="24" HorizontalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Имя:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Name="tbFirstName" Text="" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Фамилия:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Name="tbLastName" Text="" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Отчество:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Name="tbMiddleName" Text="" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Дата рождения:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Name="tbBornDate" Text="" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Пол:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Name="tbGender" Text="" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Должность:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Name="tbPositionAtWork" Text="" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Зарплата:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Name="tbWages" Text="" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Серия паспорта:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Name="tbPassportSerial" Text="" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Номер паспорта:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Name="tbPassportNumber" Text="" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Регистрация:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Name="tbRegistration" Text="" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="E-mail:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Name="tbEmail" Text="" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Номер телефона:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox Name="tbPhoneNumber" Text="" Width="200"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Margin="5,15,5,5" Content="Удалить" Click="DeleteButton_Click" Background="#FFDF0707"/>
+                <Button Margin="5,15,5,5" Content="Сохранить" Click="SaveButton_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

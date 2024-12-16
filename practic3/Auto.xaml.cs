@@ -74,11 +74,7 @@ namespace AutoservicesRul.Pages
                 {
                     MessageBox.Show("Доступ к системе в данный момент запрещён. Пожалуйста, приходите в рабочие часы с 9:00 до 18:00.",
                         "Ошибка доступа", MessageBoxButton.OK, MessageBoxImage.Warning);
-
-                    BlockControls();
-                    remainingTime = 30;
-                    txtbTimer.Visibility = Visibility.Visible;
-                    timer.Start();
+                    click = 0;
                     return;
                 }
 
@@ -87,7 +83,7 @@ namespace AutoservicesRul.Pages
                     txtbLogin.Clear();
                     pswbPassword.Clear();
                     MessageBox.Show(GreetUser(user));
-                    LoadPage(user, user.Employee.ToString());
+                    LoadPage(user, user.Employee1.Position_at_work.ToString());
                 }
                 else
                 {
@@ -120,7 +116,7 @@ namespace AutoservicesRul.Pages
                     tbCaptcha.Visibility = Visibility.Hidden;
                     tblCaptcha.Visibility= Visibility.Hidden;
                     MessageBox.Show(GreetUser(user));
-                    LoadPage(user, user.Employee.ToString());
+                    LoadPage(user, user.Employee1.Position_at_work.ToString());
                 }
                 else
                 {
@@ -132,10 +128,10 @@ namespace AutoservicesRul.Pages
             }
         }
 
-        private void LoadPage(User user, string idEmployee)
+        private void LoadPage(User user, string idPositionAtWork)
         {
             click = 0;
-            switch (idEmployee)
+            switch (idPositionAtWork)
             {
                 case "1":
                     NavigationService.Navigate(new Admin(user));
@@ -193,7 +189,7 @@ namespace AutoservicesRul.Pages
             TimeSpan endTime = new TimeSpan(18, 0, 0);    // 18:00
             TimeSpan currentTime = now.TimeOfDay;
 
-            return currentTime >= startTime && currentTime <= endTime;
+            return true;//currentTime >= startTime && currentTime <= endTime;
         }
 
         private string GreetUser(User user)
