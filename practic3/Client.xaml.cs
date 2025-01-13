@@ -86,7 +86,7 @@ namespace practic3
 
             _filteredEmployees = _employees.Where(emp =>
                 (emp.LastName + " " + emp.FirstName + " " + emp.MiddleName).ToLower().Contains(searchText) &&
-                (selectedJobTitle == "Все должности" || emp.PositionAtWork == selectedJobTitle))
+                (selectedJobTitle == "Все должности" || emp.PositionAtWork == selectedJobTitle || selectedJobTitle == null))
                 .ToList();
 
             EmployeesListView.ItemsSource = null;
