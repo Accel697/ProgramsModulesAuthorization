@@ -67,6 +67,8 @@ namespace practic3
             _jobTitles.Insert(0, "Все должности");
 
             cbJobTitle.ItemsSource = _jobTitles;
+
+            cbJobTitle.SelectedIndex = 0;
         }
 
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -86,11 +88,16 @@ namespace practic3
 
             _filteredEmployees = _employees.Where(emp =>
                 (emp.LastName + " " + emp.FirstName + " " + emp.MiddleName).ToLower().Contains(searchText) &&
-                (selectedJobTitle == "Все должности" || emp.PositionAtWork == selectedJobTitle || selectedJobTitle == null))
+                (selectedJobTitle == "Все должности" || emp.PositionAtWork == selectedJobTitle))
                 .ToList();
 
             EmployeesListView.ItemsSource = null;
             EmployeesListView.ItemsSource = _filteredEmployees;
+        }
+
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoadEmployees();
         }
     }
 }
