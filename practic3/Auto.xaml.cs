@@ -189,7 +189,7 @@ namespace AutoservicesRul.Pages
             TimeSpan endTime = new TimeSpan(18, 0, 0);    // 18:00
             TimeSpan currentTime = now.TimeOfDay;
 
-            return currentTime >= startTime && currentTime <= endTime;
+            return true;//currentTime >= startTime && currentTime <= endTime;
         }
 
         private string GreetUser(User user)

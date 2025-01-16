@@ -31,7 +31,38 @@ namespace practic3
         public EditEmployee(long employeeId)
         {
             InitializeComponent();
+            LoadComboBoxes();
             LoadEmployeeData(employeeId);
+        }
+
+        private void LoadComboBoxes()
+        {
+            using (var context = Helper.GetContext())
+            {
+                var genders = context.Gender.ToList();
+                if (genders.Any())
+                {
+                    cbGender.ItemsSource = genders;
+                    cbGender.DisplayMemberPath = "Name";
+                    cbGender.SelectedValuePath = "ID";
+                }
+                else
+                {
+                    MessageBox.Show("Полы не найдены");
+                }
+
+                var jobs = context.Job_title.ToList();
+                if (jobs.Any())
+                {
+                    cbPositionAtWork.ItemsSource = jobs;
+                    cbPositionAtWork.DisplayMemberPath = "Name";
+                    cbPositionAtWork.SelectedValuePath = "ID";
+                }
+                else
+                {
+                    MessageBox.Show("Должности не найдены");
+                }
+            }
         }
 
         private void LoadEmployeeData(long employeeId)
@@ -46,8 +77,8 @@ namespace practic3
                     tbLastName.Text = _employee.Last_name.ToString();
                     tbMiddleName.Text = _employee.Midle_name.ToString();
                     tbBornDate.Text = _employee.Born_date.ToString();
-                    tbGender.Text = _employee.Gender.ToString();
-                    tbPositionAtWork.Text = _employee.Position_at_work.ToString();
+                    cbGender.SelectedValue = _employee.Gender;
+                    cbPositionAtWork.SelectedValue = _employee.Position_at_work;
                     tbWages.Text = _employee.Wages.ToString();
                     tbPassportSerial.Text = _employee.Passport_serial.ToString();
                     tbPassportNumber.Text = _employee.Passport_number.ToString();
@@ -66,14 +97,23 @@ namespace practic3
                 {
                     var existingEmployee = db.Employee.Find(_employee.ID);
 
+                    var selectedGender = cbGender.SelectedItem as Gender;
+                    var selectedPosition = cbPositionAtWork.SelectedItem as Job_title;
+
+                    if (selectedGender == null || selectedPosition == null)
+                    {
+                        MessageBox.Show("Не удалось получить выбранные значения", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+
                     if (existingEmployee != null)
                     {
                         existingEmployee.First_name = tbFirstName.Text;
                         existingEmployee.Last_name = tbLastName.Text;
                         existingEmployee.Midle_name = tbMiddleName.Text;
                         existingEmployee.Born_date = DateTime.Parse(tbBornDate.Text);
-                        existingEmployee.Gender = long.Parse(tbGender.Text);
-                        existingEmployee.Position_at_work = long.Parse(tbPositionAtWork.Text);
+                        existingEmployee.Gender = selectedGender.ID;
+                        existingEmployee.Position_at_work = selectedPosition.ID;
                         existingEmployee.Wages = decimal.Parse(tbWages.Text);
                         existingEmployee.Passport_serial = decimal.Parse(tbPassportSerial.Text);
                         existingEmployee.Passport_number = decimal.Parse(tbPassportNumber.Text);

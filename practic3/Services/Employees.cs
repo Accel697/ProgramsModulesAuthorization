@@ -22,6 +22,6 @@ namespace practic3.Services
         public string Registration { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public string PhotoUrl { get; set; } = "default_photo.png";
+        public string PhotoUrl { get; set; }
     }
 }

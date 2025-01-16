@@ -11,51 +11,51 @@
     <Grid>
         <StackPanel Orientation="Vertical" Margin="20">
             <TextBlock Text="Добавление пользователя" FontWeight="Bold" FontSize="24" HorizontalAlignment="Center"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
                 <TextBlock Text="Имя:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBox Name="tbFirstName" Text="" Width="200"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
                 <TextBlock Text="Фамилия:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBox Name="tbLastName" Text="" Width="200"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
                 <TextBlock Text="Отчество:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBox Name="tbMiddleName" Text="" Width="200"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
                 <TextBlock Text="Дата рождения:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBox Name="tbBornDate" Text="" Width="200"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
                 <TextBlock Text="Пол:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBox Name="tbGender" Text="" Width="200"/>
+                <ComboBox Name="cbGender" Width="200" Height="35"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
                 <TextBlock Text="Должность:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBox Name="tbPositionAtWork" Text="" Width="200"/>
+                <ComboBox Name="cbPositionAtWork" Width="200" Height="35"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
                 <TextBlock Text="Зарплата:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBox Name="tbWages" Text="" Width="200"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
                 <TextBlock Text="Серия паспорта:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBox Name="tbPassportSerial" Text="" Width="200"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
                 <TextBlock Text="Номер паспорта:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBox Name="tbPassportNumber" Text="" Width="200"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
                 <TextBlock Text="Регистрация:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBox Name="tbRegistration" Text="" Width="200"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
                 <TextBlock Text="E-mail:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBox Name="tbEmail" Text="" Width="200"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
                 <TextBlock Text="Номер телефона:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBox Name="tbPhoneNumber" Text="" Width="200"/>
             </StackPanel>
