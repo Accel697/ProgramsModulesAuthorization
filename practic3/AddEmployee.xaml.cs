@@ -93,7 +93,8 @@ namespace practic3
                 Phone_number = tbPhoneNumber.Text
             };
 
-            string validationMessage = ValidateEmployee(newEmployee);
+            ValidateEmployees validate = new ValidateEmployees();
+            string validationMessage = validate.ValidateEmployee(newEmployee);
             if (!string.IsNullOrEmpty(validationMessage))
             {
                 MessageBox.Show(validationMessage, "Ошибка валидации", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -115,20 +116,6 @@ namespace practic3
             {
                 MessageBox.Show($"Ошибка при добавлении сотрудника: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        private string ValidateEmployee(Employee employee)
-        {
-            var errorMessages = new List<string>();
-            var validationResults = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
-            var validationContext = new ValidationContext(employee, null, null);
-            bool isValid = Validator.TryValidateObject(employee, validationContext, validationResults, true);
-
-            if (!isValid)
-            {
-                errorMessages.AddRange(validationResults.Select(vr => vr.ErrorMessage));
-            }
-            return string.Join("\n", errorMessages);
         }
     }
 }

@@ -120,7 +120,8 @@ namespace practic3
                     existingEmployee.E_mail = tbEmail.Text;
                     existingEmployee.Phone_number = tbPhoneNumber.Text;
 
-                    string validationMessage = ValidateEmployee(existingEmployee);
+                    ValidateEmployees validate = new ValidateEmployees();
+                    string validationMessage = validate.ValidateEmployee(existingEmployee);
                     if (!string.IsNullOrEmpty(validationMessage))
                     {
                         MessageBox.Show(validationMessage, "Ошибка валидации", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -175,20 +176,6 @@ namespace practic3
                     MessageBox.Show($"Ошибка при удалении сотрудника: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-        }
-
-        private string ValidateEmployee(Employee employee)
-        {
-            var errorMessages = new List<string>();
-            var validationResults = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
-            var validationContext = new ValidationContext(employee, null, null);
-            bool isValid = Validator.TryValidateObject(employee, validationContext, validationResults, true);
-
-            if (!isValid)
-            {
-                errorMessages.AddRange(validationResults.Select(vr => vr.ErrorMessage));
-            }
-            return string.Join("\n", errorMessages);
         }
     }
 }
