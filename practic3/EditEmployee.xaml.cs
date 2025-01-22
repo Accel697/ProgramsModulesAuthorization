@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
@@ -91,48 +92,55 @@ namespace practic3
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            try
+            using (var context = Helper.GetContext())
             {
-                using (var db = Helper.GetContext())
+                var existingEmployee = context.Employee.Find(_employee.ID);
+
+                var selectedGender = cbGender.SelectedItem as Gender;
+                var selectedPosition = cbPositionAtWork.SelectedItem as Job_title;
+
+                if (selectedGender == null || selectedPosition == null)
                 {
-                    var existingEmployee = db.Employee.Find(_employee.ID);
+                    MessageBox.Show("Не удалось получить выбранные значения", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
 
-                    var selectedGender = cbGender.SelectedItem as Gender;
-                    var selectedPosition = cbPositionAtWork.SelectedItem as Job_title;
+                if (existingEmployee != null)
+                {
+                    existingEmployee.First_name = tbFirstName.Text;
+                    existingEmployee.Last_name = tbLastName.Text;
+                    existingEmployee.Midle_name = tbMiddleName.Text;
+                    existingEmployee.Born_date = DateTime.TryParse(tbBornDate.Text, out var bornDate) ? bornDate : DateTime.MinValue;
+                    existingEmployee.Gender = selectedGender.ID;
+                    existingEmployee.Position_at_work = selectedPosition.ID;
+                    existingEmployee.Wages = decimal.TryParse(tbWages.Text, out var wages) ? wages : 0;
+                    existingEmployee.Passport_serial = decimal.TryParse(tbPassportSerial.Text, out var passportSerial) ? passportSerial : 0;
+                    existingEmployee.Passport_number = decimal.TryParse(tbPassportNumber.Text, out var passportNumber) ? passportNumber : 0;
+                    existingEmployee.Registration = tbRegistration.Text;
+                    existingEmployee.E_mail = tbEmail.Text;
+                    existingEmployee.Phone_number = tbPhoneNumber.Text;
 
-                    if (selectedGender == null || selectedPosition == null)
+                    string validationMessage = ValidateEmployee(existingEmployee);
+                    if (!string.IsNullOrEmpty(validationMessage))
                     {
-                        MessageBox.Show("Не удалось получить выбранные значения", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show(validationMessage, "Ошибка валидации", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
 
-                    if (existingEmployee != null)
+                    try
                     {
-                        existingEmployee.First_name = tbFirstName.Text;
-                        existingEmployee.Last_name = tbLastName.Text;
-                        existingEmployee.Midle_name = tbMiddleName.Text;
-                        existingEmployee.Born_date = DateTime.Parse(tbBornDate.Text);
-                        existingEmployee.Gender = selectedGender.ID;
-                        existingEmployee.Position_at_work = selectedPosition.ID;
-                        existingEmployee.Wages = decimal.Parse(tbWages.Text);
-                        existingEmployee.Passport_serial = decimal.Parse(tbPassportSerial.Text);
-                        existingEmployee.Passport_number = decimal.Parse(tbPassportNumber.Text);
-                        existingEmployee.Registration = tbRegistration.Text;
-                        existingEmployee.E_mail = tbEmail.Text;
-                        existingEmployee.Phone_number = tbPhoneNumber.Text;
-
-                        db.SaveChanges();
+                        context.SaveChanges();
                         MessageBox.Show("Данные успешно сохранены!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Сотрудник не найден.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show($"Ошибка при добавлении сотрудника: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при сохранении данных: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                else
+                {
+                    MessageBox.Show("Сотрудник не найден.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
@@ -167,6 +175,20 @@ namespace practic3
                     MessageBox.Show($"Ошибка при удалении сотрудника: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private string ValidateEmployee(Employee employee)
+        {
+            var errorMessages = new List<string>();
+            var validationResults = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+            var validationContext = new ValidationContext(employee, null, null);
+            bool isValid = Validator.TryValidateObject(employee, validationContext, validationResults, true);
+
+            if (!isValid)
+            {
+                errorMessages.AddRange(validationResults.Select(vr => vr.ErrorMessage));
+            }
+            return string.Join("\n", errorMessages);
         }
     }
 }

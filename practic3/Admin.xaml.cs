@@ -37,7 +37,6 @@ namespace practic3
         {
             _employees = Helper.GetContext().Employee.Select(e => new Employees
             {
-
                 ID = e.ID.ToString(),
                 FirstName = e.First_name,
                 LastName = e.Last_name,

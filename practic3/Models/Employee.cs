@@ -11,7 +11,8 @@ namespace practic3.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Employee
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,17 +25,47 @@ namespace practic3.Models
         }
     
         public long ID { get; set; }
+
+        [Required]
+        [StringLength(20, MinimumLength = 2, ErrorMessage = "Длина имени должна быть от 2 до 20 символов")]
         public string First_name { get; set; }
+
+        [Required]
+        [StringLength(20, MinimumLength = 2, ErrorMessage = "Длина фамилии должна быть от 2 до 20 символов")]
         public string Last_name { get; set; }
+
+        [StringLength(20, MinimumLength = 2, ErrorMessage = "Длина отчества должна быть от 2 до 20 символов")]
         public string Midle_name { get; set; }
+
+        [Required]
+        [DataType(DataType.Date, ErrorMessage = "Дата рождения должна иметь правильный вид dd.mm.yyyy")]
         public System.DateTime Born_date { get; set; }
+
+        [Required]
         public long Position_at_work { get; set; }
+
+        [Required]
+        [Range(0, double.MaxValue, ErrorMessage = "Заработная плата не может быть отрицательной")]
         public decimal Wages { get; set; }
+
+        [Required]
+        [Range(1000, 9999, ErrorMessage = "Серия паспорта находится в диппазоне от 1000 до 9999")]
         public decimal Passport_serial { get; set; }
+
+        [Required]
+        [Range(100000, 999999, ErrorMessage = "Номер паспорта находится в диппазоне от 100000 до 999999")]
         public decimal Passport_number { get; set; }
+
+        [Required]
         public string Registration { get; set; }
+
         public string E_mail { get; set; }
+
+        [Required]
+        [StringLength(15, ErrorMessage = "Длина номера телефона должна быть не более 15 символов")]
         public string Phone_number { get; set; }
+
+        [Required]
         public long Gender { get; set; }
     
         public virtual Job_title Job_title { get; set; }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,40 +62,46 @@ namespace practic3
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
+            if (cbGender.SelectedItem == null || cbPositionAtWork.SelectedItem == null)
+            {
+                MessageBox.Show("Пожалуйста, выберите пол и должность", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            var selectedGender = cbGender.SelectedItem as Gender;
+            var selectedPosition = cbPositionAtWork.SelectedItem as Job_title;
+
+            if (selectedGender == null || selectedPosition == null)
+            {
+                MessageBox.Show("Не удалось получить выбранные значения", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            var newEmployee = new Employee
+            {
+                First_name = tbFirstName.Text,
+                Last_name = tbLastName.Text,
+                Midle_name = tbMiddleName.Text,
+                Born_date = DateTime.TryParse(tbBornDate.Text, out var bornDate) ? bornDate : DateTime.MinValue,
+                Gender = selectedGender.ID,
+                Position_at_work = selectedPosition.ID,
+                Wages = decimal.TryParse(tbWages.Text, out var wages) ? wages : 0,
+                Passport_serial = decimal.TryParse(tbPassportSerial.Text, out var passportSerial) ? passportSerial : 0,
+                Passport_number = decimal.TryParse(tbPassportNumber.Text, out var passportNumber) ? passportNumber : 0,
+                Registration = tbRegistration.Text,
+                E_mail = tbEmail.Text,
+                Phone_number = tbPhoneNumber.Text
+            };
+
+            string validationMessage = ValidateEmployee(newEmployee);
+            if (!string.IsNullOrEmpty(validationMessage))
+            {
+                MessageBox.Show(validationMessage, "Ошибка валидации", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
             try
             {
-                if (cbGender.SelectedItem == null || cbPositionAtWork.SelectedItem == null)
-                {
-                    MessageBox.Show("Пожалуйста, выберите пол и должность", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-                }
-
-                var selectedGender = cbGender.SelectedItem as Gender;
-                var selectedPosition = cbPositionAtWork.SelectedItem as Job_title;
-
-                if (selectedGender == null || selectedPosition == null)
-                {
-                    MessageBox.Show("Не удалось получить выбранные значения", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-
-                var newEmployee = new Employee
-                {
-                    First_name = tbFirstName.Text,
-                    Last_name = tbLastName.Text,
-                    Midle_name = tbMiddleName.Text,
-                    Born_date = DateTime.Parse(tbBornDate.Text),
-                    Gender = selectedGender.ID,
-                    Position_at_work = selectedPosition.ID,
-                    Wages = decimal.Parse(tbWages.Text),
-                    Passport_serial = decimal.Parse(tbPassportSerial.Text),
-                    Passport_number = decimal.Parse(tbPassportNumber.Text),
-                    Registration = tbRegistration.Text,
-                    E_mail = tbEmail.Text,
-                    Phone_number = tbPhoneNumber.Text
-                };
-
                 using (var context = Helper.GetContext())
                 {
                     context.Employee.Add(newEmployee);
@@ -108,6 +115,20 @@ namespace practic3
             {
                 MessageBox.Show($"Ошибка при добавлении сотрудника: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private string ValidateEmployee(Employee employee)
+        {
+            var errorMessages = new List<string>();
+            var validationResults = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+            var validationContext = new ValidationContext(employee, null, null);
+            bool isValid = Validator.TryValidateObject(employee, validationContext, validationResults, true);
+
+            if (!isValid)
+            {
+                errorMessages.AddRange(validationResults.Select(vr => vr.ErrorMessage));
+            }
+            return string.Join("\n", errorMessages);
         }
     }
 }
