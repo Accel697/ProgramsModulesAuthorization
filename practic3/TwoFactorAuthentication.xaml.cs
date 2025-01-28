@@ -77,13 +77,13 @@ namespace practic3
                 ConfirmationCode confCode = new ConfirmationCode();
                 _confirmationCode = confCode.SendEmail(_email);
                 btnSend.IsEnabled = false;
-                remainingTime = 30;
+                remainingTime = 60;
                 txtbTimer.Visibility = Visibility.Visible;
                 timer.Start();
             }
             else
             {
-                MessageBox.Show("Email сотрудника не найден.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Email сотрудника не найден", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

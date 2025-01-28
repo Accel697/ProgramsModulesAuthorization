@@ -15,12 +15,12 @@ namespace practic3.Services
         {
             try
             {
-                MailAddress from = new MailAddress("sofaexpertofall@mail.ru", "Master of Furniture");
+                MailAddress from = new MailAddress("sofaexpertofall@mail.ru", "John Wick");
                 MailAddress to = new MailAddress(email);
                 MailMessage message = new MailMessage(from, to);
                 message.Subject = "Код подтверждения";
                 string code = new Random().Next(100000, 999999).ToString();
-                message.Body = $"Вот ваш код подтверждения: {code} \nникому его не сообщайте";
+                message.Body = $"Вот ваш код подтверждения: {code}, никому его не сообщайте";
                 message.IsBodyHtml = true;
 
                 SmtpClient smtp = new SmtpClient("smtp.mail.ru", 587);

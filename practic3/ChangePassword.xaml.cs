@@ -84,7 +84,7 @@ namespace practic3
                 ConfirmationCode confCode = new ConfirmationCode();
                 _confirmationCode = confCode.SendEmail(_email);
                 btnSend.IsEnabled = false;
-                remainingTime = 30;
+                remainingTime = 60;
                 txtbTimer.Visibility = Visibility.Visible;
                 timer.Start();
             }
@@ -134,9 +134,10 @@ namespace practic3
                 }
                 else
                 {
-                    MessageBox.Show("Пользователь не найден.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Пользователь не найден", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+            NavigationService.GoBack();
         }
 
         private void btnContinue_Click(object sender, RoutedEventArgs e)
@@ -157,6 +158,10 @@ namespace practic3
                 txtbNewPassword.IsEnabled = true;
                 txtbConfirmPassword.IsEnabled = true;
                 btnSave.IsEnabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Неверный код подтверждения", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

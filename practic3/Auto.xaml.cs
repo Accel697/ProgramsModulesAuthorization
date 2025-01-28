@@ -72,7 +72,7 @@ namespace AutoservicesRul.Pages
             {
                 if (!IsAccessAllowed())
                 {
-                    MessageBox.Show("Доступ к системе в данный момент запрещён. Пожалуйста, приходите в рабочие часы с 9:00 до 18:00.",
+                    MessageBox.Show("Доступ к системе в данный момент запрещён. Пожалуйста, приходите в рабочие часы с 9:00 до 18:00",
                         "Ошибка доступа", MessageBoxButton.OK, MessageBoxImage.Warning);
                     click = 0;
                     return;
@@ -83,7 +83,7 @@ namespace AutoservicesRul.Pages
                     txtbLogin.Clear();
                     pswbPassword.Clear();
                     MessageBox.Show(GreetUser(user));
-                    //NavigationService.Navigate(new TwoFactorAuthentication(user, user.Employee1.Position_at_work.ToString()));
+                    NavigationService.Navigate(new TwoFactorAuthentication(user, user.Employee1.Position_at_work.ToString()));
                     //LoadPage(user, user.Employee1.Position_at_work.ToString());
                 }
                 else
@@ -117,6 +117,7 @@ namespace AutoservicesRul.Pages
                     tbCaptcha.Visibility = Visibility.Hidden;
                     tblCaptcha.Visibility= Visibility.Hidden;
                     MessageBox.Show(GreetUser(user));
+                    NavigationService.Navigate(new TwoFactorAuthentication(user, user.Employee1.Position_at_work.ToString()));
                     //LoadPage(user, user.Employee1.Position_at_work.ToString());
                 }
                 else
@@ -128,7 +129,7 @@ namespace AutoservicesRul.Pages
                 }
             }
         }
-        
+        /*
         private void LoadPage(User user, string idPositionAtWork)
         {
             click = 0;
@@ -141,7 +142,7 @@ namespace AutoservicesRul.Pages
                     NavigationService.Navigate(new practic3.Client(user));
                     break;
             }
-        }
+        }*/
 
         private void BlockControls()
         {

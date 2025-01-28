@@ -112,7 +112,7 @@ namespace practic3
                         }
                         else
                         {
-                            MessageBox.Show($"Сотрудник с ID = {employeeId} не найден.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show($"Сотрудник с ID = {employeeId} не найден", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
                 }

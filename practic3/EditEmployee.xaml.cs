@@ -140,7 +140,7 @@ namespace practic3
                 }
                 else
                 {
-                    MessageBox.Show("Сотрудник не найден.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Сотрудник не найден", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -162,12 +162,12 @@ namespace practic3
                             db.Employee.Remove(employeeToDelete);
                             db.SaveChanges();
 
-                            MessageBox.Show("Сотрудник успешно удалён.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                            MessageBox.Show("Сотрудник успешно удалён", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                             NavigationService.GoBack();
                         }
                         else
                         {
-                            MessageBox.Show("Сотрудник не найден.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("Сотрудник не найден", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
                 }
