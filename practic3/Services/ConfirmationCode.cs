@@ -15,7 +15,7 @@ namespace practic3.Services
         {
             try
             {
-                MailAddress from = new MailAddress("sofaexpertofall@mail.ru", "John Wick");
+                MailAddress from = new MailAddress("accelerator697@mail.ru", "John Wick");
                 MailAddress to = new MailAddress(email);
                 MailMessage message = new MailMessage(from, to);
                 message.Subject = "Код подтверждения";
@@ -24,7 +24,7 @@ namespace practic3.Services
                 message.IsBodyHtml = true;
 
                 SmtpClient smtp = new SmtpClient("smtp.mail.ru", 587);
-                smtp.Credentials = new NetworkCredential("sofaexpertofall@mail.ru", "UL95er8AzHMjSxS5SPbu");
+                smtp.Credentials = new NetworkCredential("accelerator697@mail.ru", "agtXMVNCBdvTbTQSduuM");
                 smtp.EnableSsl = true;
                 smtp.Send(message);
 
