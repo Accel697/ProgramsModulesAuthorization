@@ -67,7 +67,7 @@ namespace practic3.Models
 
         [Required]
         public long Gender { get; set; }
-    
+
         public virtual Job_title Job_title { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Equipment> Equipment { get; set; }

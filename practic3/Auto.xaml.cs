@@ -83,7 +83,8 @@ namespace AutoservicesRul.Pages
                     txtbLogin.Clear();
                     pswbPassword.Clear();
                     MessageBox.Show(GreetUser(user));
-                    LoadPage(user, user.Employee1.Position_at_work.ToString());
+                    //NavigationService.Navigate(new TwoFactorAuthentication(user, user.Employee1.Position_at_work.ToString()));
+                    //LoadPage(user, user.Employee1.Position_at_work.ToString());
                 }
                 else
                 {
@@ -116,7 +117,7 @@ namespace AutoservicesRul.Pages
                     tbCaptcha.Visibility = Visibility.Hidden;
                     tblCaptcha.Visibility= Visibility.Hidden;
                     MessageBox.Show(GreetUser(user));
-                    LoadPage(user, user.Employee1.Position_at_work.ToString());
+                    //LoadPage(user, user.Employee1.Position_at_work.ToString());
                 }
                 else
                 {
@@ -127,7 +128,7 @@ namespace AutoservicesRul.Pages
                 }
             }
         }
-
+        
         private void LoadPage(User user, string idPositionAtWork)
         {
             click = 0;
@@ -216,6 +217,20 @@ namespace AutoservicesRul.Pages
             string fullName = $"{lastName} {firstName}" + (string.IsNullOrEmpty(middleName) ? "" : $" {middleName}");
 
             return $"{timeOfDay}\nДобро пожаловать {fullName}";
+        }
+
+        private void tblForgotPassword_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (txtbLogin.Text != null)
+            {
+                string login = txtbLogin.Text;
+                pswbPassword.Clear();
+                NavigationService.Navigate(new ChangePassword(login));
+            }
+            else
+            {
+                MessageBox.Show("Введите логин пользователя");
+            }
         }
     }
 }

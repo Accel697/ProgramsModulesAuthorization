@@ -18,6 +18,7 @@
             <TextBox x:Name="txtbLogin" IsEnabled="True"/>
             <TextBlock Text="Пароль:"/>
             <PasswordBox x:Name="pswbPassword" IsEnabled="True"/>
+            <TextBlock x:Name="tblForgotPassword" Text="Не помню пароль" TextDecorations="Underline" MouseDown="tblForgotPassword_MouseDown" Cursor="Hand"/>
             <TextBlock Visibility="Hidden" x:Name="tblCaptcha" Text="Капча"/>
             <TextBox Visibility="Hidden" x:Name="tbCaptcha" IsEnabled="True"/>
             <TextBlock HorizontalAlignment="Center" Visibility="Hidden" x:Name="txtbTimer" Text="" Foreground="#FFDF0707"/>
