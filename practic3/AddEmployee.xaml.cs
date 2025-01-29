@@ -95,6 +95,13 @@ namespace practic3
 
             ValidateEmployees validate = new ValidateEmployees();
             string validationMessage = validate.ValidateEmployee(newEmployee);
+            if (!string.IsNullOrEmpty(newEmployee.Midle_name))
+            {
+                if (newEmployee.Midle_name.Length < 2 || newEmployee.Midle_name.Length > 20)
+                {
+                    validationMessage += "\nДлина отчества должна быть от 2 до 20 символов.";
+                }
+            }
             if (!string.IsNullOrEmpty(validationMessage))
             {
                 MessageBox.Show(validationMessage, "Ошибка валидации", MessageBoxButton.OK, MessageBoxImage.Warning);

@@ -34,7 +34,6 @@ namespace practic3.Models
         [StringLength(20, MinimumLength = 2, ErrorMessage = "Длина фамилии должна быть от 2 до 20 символов")]
         public string Last_name { get; set; }
 
-        [StringLength(20, MinimumLength = 2, ErrorMessage = "Длина отчества должна быть от 2 до 20 символов")]
         public string Midle_name { get; set; }
 
         [Required]
