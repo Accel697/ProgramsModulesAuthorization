@@ -11,6 +11,12 @@ namespace practic3.Services
 {
     internal class ConfirmationCode
     {
+
+        /// <summary>
+        /// отправляет сообщение с кодом подтвержденя на почту
+        /// </summary>
+        /// <param name="email"> email сотрудника </param>
+        /// <returns> код потверждения, отправленный на почту </returns>
         public string SendEmail(string email)
         {
             try

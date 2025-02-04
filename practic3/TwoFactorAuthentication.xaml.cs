@@ -62,14 +62,24 @@ namespace practic3
             txtbTimer.Text = $"Отправить код повторно \nчерез: {remainingTime} секунд";
         }
 
+        /// <summary>
+        /// обрабатывает нажатие на кнопку подтверждения
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
-            if (txtbConfirmCode.Text == _confirmationCode)
+            if (txtbConfirmCode.Text == _confirmationCode)// сравнивается отправленный на почту код и введенный пользователем код
             {
                 LoadPage(_user, _positionAtWork);
             }
         }
 
+        /// <summary>
+        /// обрабатывает нажатие на кнопку отправки кода подтверждения на почту
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
             if (_email != null)
@@ -87,6 +97,11 @@ namespace practic3
             }
         }
 
+        /// <summary>
+        /// направляет пользователя на нужную страницу в зависимости от должности
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="idPositionAtWork"></param>
         private void LoadPage(User user, string idPositionAtWork)
         {
             switch (idPositionAtWork)

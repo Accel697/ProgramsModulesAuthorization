@@ -33,6 +33,9 @@ namespace practic3
             LoadJobTitles();
         }
 
+        /// <summary>
+        /// загрузка карточек сотрудников
+        /// </summary>
         private void LoadEmployees()
         {
             _employees = Helper.GetContext().Employee.Select(e => new Employees
@@ -40,15 +43,7 @@ namespace practic3
                 ID = e.ID.ToString(),
                 FirstName = e.First_name,
                 LastName = e.Last_name,
-                MiddleName = e.Midle_name,
-                BornDate = e.Born_date,
-                Gender = e.Gender1.Name,
                 PositionAtWork = e.Job_title.Name,
-                Wages = e.Wages,
-                PassportSerial = e.Passport_serial.ToString(),
-                PassportNumber = e.Passport_number.ToString(),
-                Registration = e.Registration,
-                Email = e.E_mail,
                 PhoneNumber = e.Phone_number
             }).ToList();
             foreach (var employee in _employees)
@@ -59,6 +54,9 @@ namespace practic3
             EmployeesListView.ItemsSource = _employees;
         }
 
+        /// <summary>
+        /// загрузка должностей для сортировки сотрудников
+        /// </summary>
         private void LoadJobTitles()
         {
             _jobTitles = Helper.GetContext().Job_title.Select(j => j.Name).Distinct().ToList();
@@ -70,16 +68,29 @@ namespace practic3
             cbJobTitle.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// поиск сотрудников по фио
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             FilterEmployees();
         }
 
+        /// <summary>
+        /// сортировка сотрудников по должности
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbJobTitle_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FilterEmployees();
         }
 
+        /// <summary>
+        /// отображения сотрудников в зависимости от критериев поиска
+        /// </summary>
         private void FilterEmployees()
         {
             string searchText = tbSearch.Text.ToLower();
@@ -94,6 +105,11 @@ namespace practic3
             EmployeesListView.ItemsSource = _filteredEmployees;
         }
 
+        /// <summary>
+        /// обрабатывает нажатие кнопки обновления страницы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
             LoadEmployees();

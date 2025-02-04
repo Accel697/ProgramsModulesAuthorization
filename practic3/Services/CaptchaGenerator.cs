@@ -10,6 +10,13 @@ namespace practic3.Services
     {
         private static readonly Random random = new Random();
         private const string Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        /// <summary>
+        /// генерирует текст для каптчи
+        /// </summary>
+        /// <param name="length"> длину каптчи </param>
+        /// <returns> текст каптчи </returns>
+        /// <exception cref="ArgumentException"></exception>
         public static string GenerateCaptchaText(int length)
         {
             if (length <= 0)

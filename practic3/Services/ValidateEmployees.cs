@@ -10,6 +10,11 @@ namespace practic3.Services
 {
     internal class ValidateEmployees
     {
+        /// <summary>
+        /// валидация информации о сотрудниках
+        /// </summary>
+        /// <param name="employee"> экземпляр класса сотрудника </param>
+        /// <returns> список ошибок при заполнении полей данных для сотрудника </returns>
         public string ValidateEmployee(Employee employee)
         {
             var errorMessages = new List<string>();

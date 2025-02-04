@@ -37,6 +37,10 @@ namespace practic3
             FindUser(login);
         }
 
+        /// <summary>
+        /// поиск пользователя по логину
+        /// </summary>
+        /// <param name="login"></param>
         private void FindUser(string login)
         {
             using (var context = Helper.GetContext())
@@ -77,6 +81,11 @@ namespace practic3
             txtbTimer.Text = $"Отправить код повторно \nчерез: {remainingTime} секунд";
         }
 
+        /// <summary>
+        /// обрабатывает нажатие на кнопку отправки кода подтверждения на почту
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
             if (_email != null)
@@ -94,6 +103,11 @@ namespace practic3
             }
         }
 
+        /// <summary>
+        /// обрабатывает нажатие на кнопку сохранения нового пароля
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             using (var context = Helper.GetContext()) 
@@ -140,9 +154,15 @@ namespace practic3
             NavigationService.GoBack();
         }
 
+        /// <summary>
+        /// обрабатывает нажатие на кнопку продолжить
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnContinue_Click(object sender, RoutedEventArgs e)
         {
-            if (txtbConfirmCode.Text == _confirmationCode)
+            if (txtbConfirmCode.Text == _confirmationCode)/* сравнивается отправленный на почту код и введенный пользователем код
+                                                           если все верно то блокируется возможность запроса кода повторно и идет переход к смене пароля*/
             {
                 txtbConfirmCode.IsEnabled = false;
                 if (remainingTime > 0)

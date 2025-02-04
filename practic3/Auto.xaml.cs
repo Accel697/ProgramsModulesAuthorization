@@ -43,11 +43,19 @@ namespace AutoservicesRul.Pages
             timer.Tick += Timer_Tick;
         }
 
+        /// <summary>
+        /// обрабатывает нажатие на кнопку входа как гость
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnEnterGuests_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new practic3.Client(null));
         }
 
+        /// <summary>
+        /// генерирует каптчу в случае неверного ввода логина или пароля, а также при неудачной попытке ввести каптчу
+        /// </summary>
         private void GenerateCapctcha()
         {
             tbCaptcha.Visibility = Visibility.Visible;
@@ -58,6 +66,11 @@ namespace AutoservicesRul.Pages
             tblCaptcha.TextDecorations = TextDecorations.Strikethrough;
         }
 
+        /// <summary>
+        /// обрабатывает нажатие на кнопку входа
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnEnter_Click(object sender, RoutedEventArgs e)
         {
             click += 1;
@@ -70,7 +83,7 @@ namespace AutoservicesRul.Pages
             var user = db.User.Where(x => x.Login == login && x.Password == hashPassw).FirstOrDefault();
             if (click == 1)
             {
-                if (!IsAccessAllowed())
+                if (!IsAccessAllowed())// проверка времени входа, в случае попытки входа в нерабочее време не давает доступ
                 {
                     MessageBox.Show("Доступ к системе в данный момент запрещён. Пожалуйста, приходите в рабочие часы с 9:00 до 18:00",
                         "Ошибка доступа", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -129,7 +142,12 @@ namespace AutoservicesRul.Pages
                 }
             }
         }
-        
+
+        /// <summary>
+        /// направляет пользователя на нужную страницу в зависимости от должности
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="idPositionAtWork"></param>
         private void LoadPage(User user, string idPositionAtWork)
         {
             click = 0;
@@ -144,6 +162,9 @@ namespace AutoservicesRul.Pages
             }
         }
 
+        /// <summary>
+        /// блокировка полей ввода данных и кнопок
+        /// </summary>
         private void BlockControls()
         {
             txtbLogin.IsEnabled = false;
@@ -153,6 +174,9 @@ namespace AutoservicesRul.Pages
             btnEnter.IsEnabled = false;
         }
 
+        /// <summary>
+        /// разблокировка полей ввода данных и кнопок
+        /// </summary>
         private void UnlockControls()
         {
             txtbLogin.IsEnabled = true;
@@ -184,6 +208,10 @@ namespace AutoservicesRul.Pages
             txtbTimer.Text = $"Оставшееся время: {remainingTime} секунд";
         }
 
+        /// <summary>
+        /// проверка на вход в рабочее время
+        /// </summary>
+        /// <returns> разрешение входа или отказ </returns>
         private bool IsAccessAllowed()
         {
             DateTime now = DateTime.Now;
@@ -194,6 +222,11 @@ namespace AutoservicesRul.Pages
             return true;//currentTime >= startTime && currentTime <= endTime;
         }
 
+        /// <summary>
+        /// приветствие пользователя
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns> строка с приветствием </returns>
         private string GreetUser(User user)
         {
             DateTime now = DateTime.Now;
@@ -220,6 +253,11 @@ namespace AutoservicesRul.Pages
             return $"{timeOfDay}\nДобро пожаловать {fullName}";
         }
 
+        /// <summary>
+        /// обрабатывает нажатие на текст для смены пароля
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tblForgotPassword_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (txtbLogin.Text != null)

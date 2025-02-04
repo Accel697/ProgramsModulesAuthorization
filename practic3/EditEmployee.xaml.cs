@@ -66,11 +66,15 @@ namespace practic3
             }
         }
 
+        /// <summary>
+        /// заполняет информацию о выбранном сотруднике
+        /// </summary>
+        /// <param name="employeeId"></param>
         private void LoadEmployeeData(long employeeId)
         {
             using (var db = Helper.GetContext())
             {
-                _employee = db.Employee.Find(employeeId);
+                _employee = db.Employee.Find(employeeId);// поиск сотрудника по id
 
                 if (_employee != null)
                 {
@@ -90,11 +94,20 @@ namespace practic3
             }
         }
 
+        /// <summary>
+        /// обрабатывает нажатие на кнопку сохранения информации о выбранном сотруднике
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            /*
+             работает аналогично кнопке добавления сотрудника из AddEmployee.xaml.cs
+            только вместо добавления нового сотрудника, изменяет информацию выбранного сотрудника
+             */
             using (var context = Helper.GetContext())
             {
-                var existingEmployee = context.Employee.Find(_employee.ID);
+                var existingEmployee = context.Employee.Find(_employee.ID);// поиск сотрудника по id
 
                 var selectedGender = cbGender.SelectedItem as Gender;
                 var selectedPosition = cbPositionAtWork.SelectedItem as Job_title;
@@ -152,6 +165,11 @@ namespace practic3
             }
         }
 
+        /// <summary>
+        /// обрабатывает нажатие на кнопку удаления выбранного сотрудника
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить этого сотрудника?", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Warning);
