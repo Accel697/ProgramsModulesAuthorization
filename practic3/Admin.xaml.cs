@@ -158,5 +158,56 @@ namespace practic3
         {
             LoadEmployees();
         }
+
+        /// <summary>
+        /// обрабатывает нажатие на кнопку печати списка сотрудников
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PrintEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            PrintDialog printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == true)
+            {
+                FlowDocument docToPrint = new FlowDocument();
+                foreach (var employee in _employees)
+                {
+                    var employeeBlock = new Paragraph();
+                    employeeBlock.Inlines.Add(new Run($"ФИО: {employee.FullName}\n"));
+                    employeeBlock.Inlines.Add(new Run($"Должность: {employee.PositionAtWork}\n"));
+                    employeeBlock.Inlines.Add(new Run($"Телефон: {employee.PhoneNumber}\n"));
+                    docToPrint.Blocks.Add(employeeBlock);
+                }
+
+                IDocumentPaginatorSource idpSource = docToPrint;
+                printDialog.PrintDocument(idpSource.DocumentPaginator, "Список сотрудников");
+            }
+        }
+
+        private void PrintFurniture_Click(object sender, RoutedEventArgs e)
+        {
+            using (var context = Helper.GetContext())
+            {
+                var _furnitureItems = context.Furniture.ToList();
+
+                PrintDialog printDialog = new PrintDialog();
+                if (printDialog.ShowDialog() == true)
+                {
+                    FlowDocument docToPrint = new FlowDocument();
+                    foreach (var furniture in _furnitureItems)
+                    {
+                        var furnitureBlock = new Paragraph();
+                        furnitureBlock.Inlines.Add(new Run($"Название: {furniture.Name}\n"));
+                        furnitureBlock.Inlines.Add(new Run($"Тип мебели: {furniture.Type_of_furniture.Name}\n"));
+                        furnitureBlock.Inlines.Add(new Run($"ФИО дизайнера: {furniture.Employee.Last_name} {furniture.Employee.First_name}\n"));
+                        furnitureBlock.Inlines.Add(new Run($"Цена: {furniture.Price}\n"));
+                        docToPrint.Blocks.Add(furnitureBlock);
+                    }
+
+                    IDocumentPaginatorSource idpSource = docToPrint;
+                    printDialog.PrintDocument(idpSource.DocumentPaginator, "Список сотрудников");
+                }
+            }
+        }
     }
 }
