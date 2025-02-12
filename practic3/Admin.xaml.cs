@@ -205,7 +205,7 @@ namespace practic3
                     }
 
                     IDocumentPaginatorSource idpSource = docToPrint;
-                    printDialog.PrintDocument(idpSource.DocumentPaginator, "Список сотрудников");
+                    printDialog.PrintDocument(idpSource.DocumentPaginator, "Список мебели");
                 }
             }
         }
