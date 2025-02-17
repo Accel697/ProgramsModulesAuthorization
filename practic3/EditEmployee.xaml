@@ -63,6 +63,7 @@
                 <Button Margin="5,15,5,5" Content="Удалить" Click="DeleteButton_Click" Background="#FFDF0707"/>
                 <Button Margin="5,15,5,5" Content="Сохранить" Click="SaveButton_Click"/>
             </StackPanel>
+            <Button Margin="5,15,5,5" Content="Создать трудовой договор" Click="GenerateContractt_Click" Width="240"/>
         </StackPanel>
     </Grid>
 </Page>

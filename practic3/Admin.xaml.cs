@@ -49,7 +49,7 @@ namespace practic3
             foreach (var employee in _employees)
             {
                 employee.FullName = $"{employee.LastName} {employee.FirstName}";
-                employee.PhotoUrl = "Resources/default_photo.jpg";
+                employee.PhotoUrl = "Resources\\default_photo.jpg";
             }
             EmployeesListView.ItemsSource = _employees;
         }

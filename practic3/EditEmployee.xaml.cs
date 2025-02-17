@@ -202,5 +202,11 @@ namespace practic3
                 }
             }
         }
+
+        private void GenerateContractt_Click(object sender, RoutedEventArgs e) 
+        {
+            LaborContractGenerator laborContractGenerator = new LaborContractGenerator();
+            laborContractGenerator.GenerateContract(_employee.ID);
+        }
     }
 }
