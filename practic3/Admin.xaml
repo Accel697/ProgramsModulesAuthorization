@@ -46,8 +46,9 @@
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
+                        <Button Margin="5,15,5,15" Content="Добавить сотрудника" Click="AddEmployeeButton_Click" Width="180"/>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Margin="5,15,5,15" Content="Добавить сотрудника" Click="AddEmployeeButton_Click" Width="160"/>
+                            <Button Margin="5, 15, 5, 15" Content="Создать Excel" Click="DisplayExcelEmployee_Click" Width="160"/>
                             <Button Margin="5, 15, 5, 15" Content="Печать" Click="PrintEmployee_Click" Width="160"/>
                         </StackPanel>
                         <Button Margin="5, 15, 5, 15" Content="Печать мебели" Click="PrintFurniture_Click" Width="180"/>

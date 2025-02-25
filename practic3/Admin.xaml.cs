@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using practic3.Models;
 using practic3.Services;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace practic3
 {
@@ -207,6 +208,67 @@ namespace practic3
                     IDocumentPaginatorSource idpSource = docToPrint;
                     printDialog.PrintDocument(idpSource.DocumentPaginator, "Список мебели");
                 }
+            }
+        }
+
+        private void DisplayExcelEmployee_Click(object sender, RoutedEventArgs e) 
+        {
+            using (var context = Helper.GetContext()) 
+            {
+                var employees = context.Employee.ToList();
+
+                var excelApp = new Excel.Application();
+                excelApp.Visible = true;
+                excelApp.Workbooks.Add();
+                Excel._Worksheet workSheet = (Excel._Worksheet)excelApp.ActiveSheet;
+
+                workSheet.Cells[1, 1] = "ID";
+                workSheet.Cells[1, 2] = "Имя";
+                workSheet.Cells[1, 3] = "Фамилия";
+                workSheet.Cells[1, 4] = "Отчество";
+                workSheet.Cells[1, 5] = "Дата рождения";
+                workSheet.Cells[1, 6] = "Пол";
+                workSheet.Cells[1, 7] = "Должность";
+                workSheet.Cells[1, 8] = "Зарплата";
+                workSheet.Cells[1, 9] = "Серия паспорта";
+                workSheet.Cells[1, 10] = "Номер паспорта";
+                workSheet.Cells[1, 11] = "Регистрация";
+                workSheet.Cells[1, 12] = "E-mail";
+                workSheet.Cells[1, 13] = "Телефон";
+
+                int row = 2;
+
+                foreach (var employee in employees)
+                {
+                    workSheet.Cells[row, 1] = employee.ID.ToString();
+                    workSheet.Cells[row, 2] = employee.First_name;
+                    workSheet.Cells[row, 3] = employee.Last_name;
+                    workSheet.Cells[row, 4] = employee.Midle_name;
+                    workSheet.Cells[row, 5] = employee.Born_date.ToString();
+                    workSheet.Cells[row, 6] = employee.Gender1.Name;
+                    workSheet.Cells[row, 7] = employee.Job_title.Name;
+                    workSheet.Cells[row, 8] = employee.Wages.ToString();
+                    workSheet.Cells[row, 9] = employee.Passport_serial.ToString();
+                    workSheet.Cells[row, 10] = employee.Passport_number.ToString();
+                    workSheet.Cells[row, 11] = employee.Registration;
+                    workSheet.Cells[row, 12] = employee.E_mail;
+                    workSheet.Cells[row, 13] = employee.Phone_number;
+                    row++;
+                }
+
+                workSheet.Columns[1].AutoFit();
+                workSheet.Columns[2].AutoFit();
+                workSheet.Columns[3].AutoFit();
+                workSheet.Columns[4].AutoFit();
+                workSheet.Columns[5].AutoFit();
+                workSheet.Columns[6].AutoFit();
+                workSheet.Columns[7].AutoFit();
+                workSheet.Columns[8].AutoFit();
+                workSheet.Columns[9].AutoFit();
+                workSheet.Columns[10].AutoFit();
+                workSheet.Columns[11].AutoFit();
+                workSheet.Columns[12].AutoFit();
+                workSheet.Columns[13].AutoFit();
             }
         }
     }
